@@ -1,14 +1,19 @@
-class Trial
-    attr_accessor :name, :subject
+require_relative 'Test'
+
+class Trial < Test
+  attr_accessor :difficulty
   
-    def initialize(name, subject)
-      @name = name
-      @subject = subject
-    end
-  
-    def display_info
-      puts "Trial Name: #{@name}"
-      puts "Subject: #{@subject}"
-    end
+  def initialize(subject, duration, difficulty)
+    super(subject, duration)
+    @difficulty = difficulty
   end
   
+  def display_info
+    super
+    puts "Difficulty: #{@difficulty}"
+  end
+  
+  def perform
+    puts "Performing the trial..."
+  end
+end

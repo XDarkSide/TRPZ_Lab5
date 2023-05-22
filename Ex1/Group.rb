@@ -15,8 +15,20 @@ class Group
 
   def display_students
     @students.each do |student|
-      puts "ID: #{student.id}, Name: #{student.name}, Surname: #{student.surname}, " \
-           "Father's Name: #{student.fname}, Birthday: #{student.birthday}"
+      student.display_info
+    end
+  end
+
+  def find_student(student_id)
+    @students.find { |student| student.id == student_id }
+  end
+
+  def edit_student(student_id, attributes)
+    student = find_student(student_id)
+    return unless student
+
+    attributes.each do |key, value|
+      student.send("#{key}=", value) if student.respond_to?(key)
     end
   end
 end

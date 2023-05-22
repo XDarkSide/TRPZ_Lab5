@@ -1,16 +1,27 @@
 class Triangle
-  def initialize(a, b, c)
-    @a = a
-    @b = b
-    @c = c
+  attr_accessor :side1, :side2, :side3
+
+  def initialize(side1, side2, side3)
+    @side1 = side1
+    @side2 = side2
+    @side3 = side3
+  end
+
+  def valid?
+    positive_sides = side1.positive? && side2.positive? && side3.positive?
+    triangle_inequality = side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1
+
+    positive_sides && triangle_inequality
   end
 
   def perimeter
-    @a + @b + @c
+    side1 + side2 + side3
   end
 
   def area
-    s = perimeter / 2.0
-    Math.sqrt(s * (s - @a) * (s - @b) * (s - @c))
+    return 0 unless valid?
+
+    semiperimeter = perimeter / 2.0
+    Math.sqrt(semiperimeter * (semiperimeter - side1) * (semiperimeter - side2) * (semiperimeter - side3))
   end
 end

@@ -1,14 +1,17 @@
 class Test
-    attr_accessor :name, :subject
+  attr_accessor :subject, :duration
   
-    def initialize(name, subject)
-      @name = name
-      @subject = subject
-    end
-  
-    def display_info
-      puts "Test Name: #{@name}"
-      puts "Subject: #{@subject}"
-    end
+  def initialize(subject, duration)
+    @subject = subject
+    @duration = duration
   end
   
+  def display_info
+    puts "Subject: #{@subject}"
+    puts "Duration: #{@duration} minutes"
+  end
+  
+  def perform
+    puts "Performing the test..."
+  end
+end
